@@ -1,0 +1,24 @@
+.item__cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.item__cards-container {
+  position: relative;
+  width: 323px;
+  height: 326px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.item__cards-name {
+  top: 15px;
+  right: 125px;
+  margin: 0;
+  position: absolute;
+}
+
+.item__cards-image {
+  object-fit: cover;
+}
