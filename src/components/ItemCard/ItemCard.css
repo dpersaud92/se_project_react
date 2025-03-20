@@ -1,24 +1,30 @@
-.item__cards {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../../vendor/Fonts/CabinetGrotesk.ttf);
 }
 
-.item__cards-container {
-  position: relative;
+.card {
   width: 323px;
-  height: 326px;
+  position: relative;
+  display: flex;
+  justify-content: center;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  text-align: center;
+  border-radius: 25px;
+  overflow: hidden;
+  background-color: #f8f8f8;
 }
 
-.item__cards-name {
-  top: 15px;
-  right: 125px;
-  margin: 0;
+.card__name {
   position: absolute;
+  top: 15px;
+  margin: 0;
+  padding: 2px 12px;
+  background: white;
+  font-family: "Cabinet Grotesk";
+  font-weight: 500;
+  font-size: 16px;
 }
 
-.item__cards-image {
-  object-fit: cover;
+.card__image {
+  width: 100%;
 }

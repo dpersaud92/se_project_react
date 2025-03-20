@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../../vendor/Fonts/CabinetGrotesk.ttf);
+}
+
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.cards__text {
+  margin: 40px 0 34px;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  font-size: 20px;
+}
