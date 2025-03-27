@@ -1,5 +1,3 @@
-// https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${7481c82df45a2e4acb6a1ea1347156fe}
-
 export const defaultClothingItems = [
   {
     _id: 0,
@@ -38,3 +36,10 @@ export const defaultClothingItems = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },
 ];
+
+export const coordinates = {
+  latitude: 40.6941097,
+  longitude: -73.6130285,
+};
+
+export const APIkey = "2a157b608ebafc8d2026f2282de1f64c";
