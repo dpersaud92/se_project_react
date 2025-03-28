@@ -5,7 +5,6 @@
   font-style: normal;
 }
 
-/* Footer container styling */
 .footer__container {
   max-width: 1360px;
   width: 100%;
@@ -20,7 +19,6 @@
   line-height: 20px;
 }
 
-/* Footer caption and year styling */
 .footer__caption,
 .footer__year {
   margin: 0;
