@@ -22,7 +22,8 @@ function App() {
     weather: "",
   });
 
-  const modalRef = useRef(null);
+  const modalWithFormRef = useRef(null);
+  const itemModalRef = useRef(null);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -47,6 +48,8 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!activeModal) return;
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         closeActiveModal();
@@ -54,22 +57,28 @@ function App() {
     };
 
     const handleClickOutside = (e) => {
-      if (activeModal && modalRef.current && modalRef.current === e.target) {
+      if (
+        (activeModal === "add-garment" &&
+          modalWithFormRef.current &&
+          !modalWithFormRef.current.contains(e.target)) ||
+        (activeModal === "preview" &&
+          itemModalRef.current &&
+          !itemModalRef.current.contains(e.target))
+      ) {
         closeActiveModal();
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mouseup", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [activeModal]);
-
   const isFormValid =
-    formValues.name && formValues.imageUrl && formValues.weather;
+    formValues.name.trim() && formValues.imageUrl.trim() && formValues.weather;
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -89,25 +98,66 @@ function App() {
 
       {activeModal === "add-garment" && (
         <ModalWithForm
-          ref={modalRef}
+          ref={modalWithFormRef}
           title="New garment"
           buttonText="Add garment"
-          activeModal={activeModal}
+          isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
-          onInputChange={handleInputChange}
-          onWeatherChange={handleWeatherChange}
           isSubmitDisabled={!isFormValid}
-        />
+        >
+          {/* Form Content */}
+          <label htmlFor="name" className="modal__label">
+            Name
+            <input
+              type="text"
+              className="modal__input"
+              id="name"
+              placeholder="Name"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label htmlFor="imageUrl" className="modal__label">
+            Image
+            <input
+              type="url"
+              className="modal__input"
+              id="imageUrl"
+              placeholder="Image URL"
+              onChange={handleInputChange}
+            />
+          </label>
+          <fieldset className="modal__radio-buttons">
+            <legend className="modal__legend">Select the weather type:</legend>
+            {["hot", "warm", "cold"].map((type) => (
+              <label
+                key={type}
+                htmlFor={type}
+                className="modal__legend modal__legend_type_radio"
+              >
+                <input
+                  type="radio"
+                  className="modal__radio-input"
+                  id={type}
+                  name="weather"
+                  value={type}
+                  onChange={handleWeatherChange}
+                />
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </label>
+            ))}
+          </fieldset>
+        </ModalWithForm>
       )}
 
       {activeModal === "preview" && (
         <ItemModal
-          ref={modalRef}
+          ref={itemModalRef}
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
         />
       )}
+
       <Footer />
     </div>
   );
