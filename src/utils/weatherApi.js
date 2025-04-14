@@ -15,10 +15,12 @@ export const filterWeatherData = (data) => {
   const tempF = data.main.temp;
 
   result.city = data.name;
-  result.temp = { F: tempF };
+  result.temp = {
+    F: Math.round(data.main.temp),
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
+  };
   result.type = getWeatherType(tempF);
 
-  // Determine if it's daytime
   const isDay = data.dt >= data.sys.sunrise && data.dt <= data.sys.sunset;
   const condition = data.weather[0].main.toLowerCase();
 

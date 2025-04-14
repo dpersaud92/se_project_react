@@ -11,6 +11,8 @@ import nightfog from "../../assets/nightfog.png";
 import nightrain from "../../assets/nightrain.png";
 import nightsnow from "../../assets/nightsnow.png";
 import nightstorm from "../../assets/nightstorm.png";
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/currentTemperatureUnit.jsx";
 
 const weatherIcons = {
   dayclear,
@@ -28,12 +30,18 @@ const weatherIcons = {
 };
 
 function WeatherCard({ weatherData }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const iconKey = weatherData.icon;
   const icon = weatherIcons[iconKey];
 
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherData.temp.F}&deg; F</p>
+      <p className="weather-card__temp">
+        {currentTemperatureUnit === "F"
+          ? weatherData.temp.F
+          : weatherData.temp.C}
+        &deg; {currentTemperatureUnit}
+      </p>
       <img src={icon} alt={iconKey} className="weather-card__image" />
     </section>
   );

@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../../vendor/Fonts/CabinetGrotesk.ttf);
+}
+
+.toggle-switch {
+  width: 56px;
+  height: 28px;
+  border: 2px solid rgba(126, 126, 126, 1);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-switch__checkbox {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle-switch__circle {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 32px;
+  height: 32px;
+  background-color: black;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.toggle-switch__text {
+  position: absolute;
+  top: 7px;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  color: rgba(126, 126, 126, 1);
+}
+
+.toggle-switch__text--f {
+  color: white;
+  left: 9px;
+}
+
+.toggle-switch__text--c {
+  right: 9px;
+}
+
+.toggle-switch__checkbox:hover ~ .toggle-switch__circle {
+  left: 12px;
+}
+
+.toggle-switch__checkbox:hover ~ .toggle-switch__text--f {
+  color: rgba(126, 126, 126, 1);
+}
+
+.toggle-switch__checkbox:hover ~ .toggle-switch__text--c {
+  color: white;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__circle {
+  left: 26px;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text--f {
+  color: rgba(126, 126, 126, 1);
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text--c {
+  color: white;
+}
+
+.toggle-switch__checkbox:checked:hover ~ .toggle-switch__circle {
+  left: 12px;
+}
+
+.toggle-switch__checkbox:checked:hover ~ .toggle-switch__text--f {
+  color: white;
+}
+
+.toggle-switch__checkbox:checked:hover ~ .toggle-switch__text--c {
+  color: rgba(126, 126, 126, 1);
+}
