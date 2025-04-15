@@ -13,7 +13,10 @@ function Header({ handleAddClick, weatherData, isFahrenheit, onToggleTemp }) {
 
   return (
     <header className="header">
-      <img className="header__logo" src={Logo} alt="logo" />
+      <Link to="/">
+        <img className="header__logo" src={Logo} alt="logo" />
+      </Link>
+
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
@@ -30,8 +33,10 @@ function Header({ handleAddClick, weatherData, isFahrenheit, onToggleTemp }) {
       </div>
 
       <div className="header__user-container">
-        <p className="header__username">Brian O'Conner</p>
-        <img src={Avatar} alt="user avatar" className="header__avatar" />
+        <Link to="/profile" className="header__link">
+          <p className="header__username">Brian O'Conner</p>
+          <img src={Avatar} alt="user avatar" className="header__avatar" />
+        </Link>
       </div>
     </header>
   );

@@ -1,8 +1,13 @@
 import "./ClothesSection.css";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
+import { useContext } from "react";
+import WeatherContext from "../../contexts/currentTemperatureUnit";
+import WeatherCard from "../WeatherCard/WeatherCard";
 
 function ClothesSection() {
+  const weatherData = useContext(WeatherContext);
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__add-item">
