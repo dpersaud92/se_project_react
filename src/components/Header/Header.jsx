@@ -13,14 +13,26 @@ function Header({ handleAddClick, weatherData, isFahrenheit, onToggleTemp }) {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo">
-        WTWR
-      </Link>
+      <img className="header__logo" src={Logo} alt="logo" />
+      <p className="header__date-and-location">
+        {currentDate}, {weatherData.city}
+      </p>
 
-      <Link to="/profile" className="header__profile">
-        <img src={Avatar} alt="avatar" className="header__avatar" />
-        <span className="header__username">John Doe</span>
-      </Link>
+      <div className="header__actions">
+        <ToggleSwitch />
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__add-clothes-btn"
+        >
+          <img src={Clothes} alt="clothes image" />
+        </button>
+      </div>
+
+      <div className="header__user-container">
+        <p className="header__username">Brian O'Conner</p>
+        <img src={Avatar} alt="user avatar" className="header__avatar" />
+      </div>
     </header>
   );
 }

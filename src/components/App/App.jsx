@@ -9,8 +9,7 @@ import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/currentTemperatureUnit";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Avatar from "../../assets/headerAvatar.svg";
+import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 
 function App() {
@@ -141,69 +140,58 @@ function App() {
   };
 
   return (
-    <Router>
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <div className="page">
-          <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                  />
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <Profile
-                    clothingItems={clothingItems}
-                    onCardClick={handleCardClick}
-                    onAddClick={handleAddClick}
-                  />
-                }
-              />
-            </Routes>
-          </div>
-
-          {activeModal === "add-garment" && (
-            <AddItemModal
-              isOpen={activeModal === "add-garment"}
-              onClose={closeActiveModal}
-              onAddItem={handleAddItemSubmit}
-              modalRef={modalWithFormRef}
-              formValues={formValues}
-              handleInputChange={handleInputChange}
-              handleWeatherChange={handleWeatherChange}
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
+      <div className="page">
+        <div className="page__content">
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
             />
-          )}
-
-          {activeModal === "preview" && (
-            <ItemModal
-              ref={itemModalRef}
-              activeModal={activeModal}
-              card={selectedCard}
-              onClose={closeActiveModal}
-              handleDelete={openConfirmationModal}
-            />
-          )}
-          {isConfirmModalOpen && (
-            <DeleteConfirmationModal
-              isOpen={isConfirmModalOpen}
-              onClose={() => setIsConfirmModalOpen(false)}
-              onConfirmDelete={handleConfirmDelete}
-            />
-          )}
-          <Footer />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
         </div>
-      </CurrentTemperatureUnitContext.Provider>
-    </Router>
+
+        {activeModal === "add-garment" && (
+          <AddItemModal
+            isOpen={activeModal === "add-garment"}
+            onClose={closeActiveModal}
+            onAddItem={handleAddItemSubmit}
+            modalRef={modalWithFormRef}
+            formValues={formValues}
+            handleInputChange={handleInputChange}
+            handleWeatherChange={handleWeatherChange}
+          />
+        )}
+
+        {activeModal === "preview" && (
+          <ItemModal
+            ref={itemModalRef}
+            activeModal={activeModal}
+            card={selectedCard}
+            onClose={closeActiveModal}
+            handleDelete={openConfirmationModal}
+          />
+        )}
+        {isConfirmModalOpen && (
+          <DeleteConfirmationModal
+            isOpen={isConfirmModalOpen}
+            onClose={() => setIsConfirmModalOpen(false)}
+            onConfirmDelete={handleConfirmDelete}
+          />
+        )}
+        <Footer />
+      </div>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 

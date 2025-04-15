@@ -1,16 +1,18 @@
-import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
+import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
-export default function Profile({ clothingItems, onCardClick, onAddClick }) {
+function Profile() {
   return (
     <div className="profile">
-      <SideBar />
-      <ClothesSection
-        clothingItems={clothingItems}
-        onCardClick={onCardClick}
-        onAddClick={onAddClick}
-      />
+      <section className="profile__sidebar">
+        <SideBar />
+      </section>
+      <section className="profile__clothing-items">
+        <ClothesSection />
+      </section>
     </div>
   );
 }
+
+export default Profile;
