@@ -9,6 +9,7 @@ import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/currentTemperatureUnit";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -29,6 +30,24 @@ function App() {
   });
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [cardToDelete, setCardToDelete] = useState(null);
+
+  const openConfirmationModal = (card) => {
+    setCardToDelete(card);
+    setIsConfirmModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    setClothingItems((prevItems) =>
+      prevItems.filter((item) => item._id !== cardToDelete._id)
+    );
+    setIsConfirmModalOpen(false);
+    setActiveModal("");
+    setSelectedCard({});
+    setCardToDelete(null);
+  };
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
@@ -48,6 +67,20 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
+
+  function handleAddItemSubmit(newItem) {
+    setClothingItems([newItem, ...clothingItems]);
+    setActiveModal(""); // Close the modal
+    setFormValues({ name: "", imageUrl: "", weather: "" }); // Reset form
+  }
+
+  function handleCardDelete(cardToDelete) {
+    setClothingItems((prevItems) =>
+      prevItems.filter((item) => item._id !== cardToDelete._id)
+    );
+    setActiveModal(""); // Close the modal
+    setSelectedCard({}); // Clear selection
+  }
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -116,6 +149,7 @@ function App() {
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onClose={closeActiveModal}
+            onAddItem={handleAddItemSubmit}
             modalRef={modalWithFormRef}
             formValues={formValues}
             handleInputChange={handleInputChange}
@@ -129,9 +163,17 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             onClose={closeActiveModal}
+            handleDelete={handleCardDelete}
+            handleConfirmation={openConfirmationModal}
           />
         )}
-
+        {isConfirmModalOpen && (
+          <DeleteConfirmationModal
+            isOpen={isConfirmModalOpen}
+            onClose={() => setIsConfirmModalOpen(false)}
+            onConfirmDelete={handleConfirmDelete}
+          />
+        )}
         <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>

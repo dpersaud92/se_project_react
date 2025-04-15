@@ -1,0 +1,27 @@
+.modal__content_type_confirm {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal__title {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal__button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal__button_type_cancel {
+  background-color: #ccc;
+}

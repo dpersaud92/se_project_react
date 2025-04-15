@@ -14,6 +14,15 @@ export default function AddItemModal({
   const isFormValid =
     formValues.name.trim() && formValues.imageUrl.trim() && formValues.weather;
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    onAddItem({
+      name: formValues.name,
+      imageUrl: formValues.imageUrl,
+      weather: formValues.weather,
+    });
+  }
+
   return (
     <ModalWithForm
       ref={modalRef}
@@ -22,6 +31,7 @@ export default function AddItemModal({
       isOpen={isOpen}
       onClose={onClose}
       isSubmitDisabled={!isFormValid}
+      onSubmit={handleSubmit}
     >
       {/* Form Content */}
       <label htmlFor="name" className="modal__label">
