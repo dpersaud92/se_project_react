@@ -8,6 +8,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/currentTemperatureUnit";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -17,6 +18,8 @@ function App() {
     condition: "",
     isDay: false,
   });
+
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [formValues, setFormValues] = useState({
@@ -58,33 +61,31 @@ function App() {
   useEffect(() => {
     if (!activeModal) return;
 
+    const handleClickOutside = (e) => {
+      if (
+        activeModal === "add-garment" &&
+        modalWithFormRef.current &&
+        !modalWithFormRef.current.contains(e.target)
+      ) {
+        closeActiveModal();
+      }
+    };
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         closeActiveModal();
       }
     };
 
-    const handleClickOutside = (e) => {
-      if (
-        (activeModal === "add-garment" &&
-          modalWithFormRef.current &&
-          !modalWithFormRef.current.contains(e.target)) ||
-        (activeModal === "preview" &&
-          itemModalRef.current &&
-          !itemModalRef.current.contains(e.target))
-      ) {
-        closeActiveModal();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [activeModal]);
+
   const isFormValid =
     formValues.name.trim() && formValues.imageUrl.trim() && formValues.weather;
 
@@ -104,13 +105,21 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          <Main
+            weatherData={weatherData}
+            handleCardClick={handleCardClick}
+            clothingItems={clothingItems}
+          />
         </div>
 
         {activeModal === "add-garment" && (
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onClose={closeActiveModal}
+            modalRef={modalWithFormRef}
+            formValues={formValues}
+            handleInputChange={handleInputChange}
+            handleWeatherChange={handleWeatherChange}
           />
         )}
 

@@ -1,16 +1,29 @@
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-export default function AddItemModal({ onClose, isOpen }) {
+export default function AddItemModal({
+  onClose,
+  isOpen,
+  modalRef,
+  formValues,
+  handleInputChange,
+  handleWeatherChange,
+}) {
+  if (!isOpen) return null;
+
+  const isFormValid =
+    formValues.name.trim() && formValues.imageUrl.trim() && formValues.weather;
+
   return (
     <ModalWithForm
-      ref={ModalWithForm}
+      ref={modalRef}
       title="New garment"
       buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
       isSubmitDisabled={!isFormValid}
     >
+      {/* Form Content */}
       <label htmlFor="name" className="modal__label">
         Name
         <input
@@ -18,7 +31,11 @@ export default function AddItemModal({ onClose, isOpen }) {
           className="modal__input"
           id="name"
           placeholder="Name"
+          required
+          minLength="1"
+          maxLength="30"
           onChange={handleInputChange}
+          value={formValues.name}
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
@@ -28,7 +45,9 @@ export default function AddItemModal({ onClose, isOpen }) {
           className="modal__input"
           id="imageUrl"
           placeholder="Image URL"
+          required
           onChange={handleInputChange}
+          value={formValues.imageUrl}
         />
       </label>
       <fieldset className="modal__radio-buttons">
