@@ -19,7 +19,7 @@ const ItemModal = forwardRef(
       <div
         ref={ref}
         className={`modal ${activeModal === "preview" && "modal_opened"}`}
-        onMouseDown={handleOverlayClick} // Close modal when clicking on the background
+        onMouseDown={handleOverlayClick}
       >
         {activeModal === "preview" && (
           <div

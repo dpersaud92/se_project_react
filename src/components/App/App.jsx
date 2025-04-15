@@ -11,6 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -23,7 +24,7 @@ function App() {
 
   const [clothingItems, setClothingItems] = useState(() => {
     const saved = localStorage.getItem("clothingItems");
-    return saved ? JSON.parse(saved) : [];
+    return saved ? JSON.parse(saved) : defaultClothingItems;
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -157,7 +158,16 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  handleAddClick={handleAddClick}
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
           </Routes>
         </div>
 
