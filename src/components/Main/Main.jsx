@@ -20,9 +20,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
         </p>
         <ul className="cards__list">
           {clothingItems
-            .filter((item) => {
-              return item.weather === weatherData.type;
-            })
+            .filter((item) => item.weather && item.weather === weatherData.type)
             .map((item) => {
               return (
                 <ItemCard

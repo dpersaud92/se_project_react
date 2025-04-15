@@ -69,17 +69,14 @@ function App() {
   };
 
   function handleAddItemSubmit(newItem) {
-    setClothingItems([newItem, ...clothingItems]);
+    const itemWithId = {
+      ...newItem,
+      _id: Date.now().toString(),
+    };
+
+    setClothingItems([itemWithId, ...clothingItems]);
     setActiveModal(""); // Close the modal
     setFormValues({ name: "", imageUrl: "", weather: "" }); // Reset form
-  }
-
-  function handleCardDelete(cardToDelete) {
-    setClothingItems((prevItems) =>
-      prevItems.filter((item) => item._id !== cardToDelete._id)
-    );
-    setActiveModal(""); // Close the modal
-    setSelectedCard({}); // Clear selection
   }
 
   useEffect(() => {
@@ -163,8 +160,7 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             onClose={closeActiveModal}
-            handleDelete={handleCardDelete}
-            handleConfirmation={openConfirmationModal}
+            handleDelete={openConfirmationModal}
           />
         )}
         {isConfirmModalOpen && (
