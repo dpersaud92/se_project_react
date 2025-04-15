@@ -4,6 +4,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 export default function AddItemModal({
   onClose,
   isOpen,
+  onAddItem,
   modalRef,
   formValues,
   handleInputChange,
@@ -33,7 +34,6 @@ export default function AddItemModal({
       isSubmitDisabled={!isFormValid}
       onSubmit={handleSubmit}
     >
-      {/* Form Content */}
       <label htmlFor="name" className="modal__label">
         Name
         <input
@@ -75,6 +75,7 @@ export default function AddItemModal({
               name="weather"
               value={type}
               onChange={handleWeatherChange}
+              checked={formValues.weather === type}
             />
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </label>

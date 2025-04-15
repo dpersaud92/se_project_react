@@ -20,7 +20,7 @@ function App() {
     isDay: false,
   });
 
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [formValues, setFormValues] = useState({
@@ -69,13 +69,16 @@ function App() {
   };
 
   function handleAddItemSubmit(newItem) {
+    console.log("New item weather:", newItem.weather);
+    console.log("Current weather type:", weatherData.type);
+
     const itemWithId = {
       ...newItem,
       _id: Date.now().toString(),
     };
 
     setClothingItems([itemWithId, ...clothingItems]);
-    setActiveModal(""); // Close the modal
+    setActiveModal("");
     setFormValues({ name: "", imageUrl: "", weather: "" }); // Reset form
   }
 

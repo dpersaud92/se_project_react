@@ -3,7 +3,18 @@ import close from "../../assets/close.svg";
 import React, { forwardRef } from "react";
 
 const ModalWithForm = forwardRef(
-  ({ children, buttonText, title, isOpen, onClose, isSubmitDisabled }, ref) => {
+  (
+    {
+      children,
+      buttonText,
+      title,
+      isOpen,
+      onClose,
+      onSubmit,
+      isSubmitDisabled,
+    },
+    ref
+  ) => {
     return (
       <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
         <div ref={ref} className="modal__content">
@@ -11,7 +22,7 @@ const ModalWithForm = forwardRef(
           <button onClick={onClose} type="button" className="modal__close">
             <img src={close} alt="close" />
           </button>
-          <form className="modal__form">
+          <form className="modal__form" onSubmit={onSubmit}>
             {children}
             <button
               type="submit"

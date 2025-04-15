@@ -30,7 +30,7 @@ const ItemModal = forwardRef(
               <img src={close} alt="close" />
             </button>
             <img
-              src={card.link}
+              src={card.imageUrl || card.link}
               alt={card.name || ""}
               className="modal__image"
             />
