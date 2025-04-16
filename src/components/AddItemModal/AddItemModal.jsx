@@ -1,7 +1,7 @@
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-export default function AddItemModal({
+function AddItemModal({
   onClose,
   isOpen,
   onAddItem,
@@ -84,3 +84,5 @@ export default function AddItemModal({
     </ModalWithForm>
   );
 }
+
+export default AddItemModal;

@@ -2,11 +2,7 @@ import React from "react";
 import "./DeleteConfirmationModal.css";
 import close from "../../assets/close.svg";
 
-export default function DeleteConfirmationModal({
-  isOpen,
-  onClose,
-  onConfirmDelete,
-}) {
+function DeleteConfirmationModal({ isOpen, onClose, onConfirmDelete }) {
   if (!isOpen) return null;
 
   return (
@@ -41,3 +37,5 @@ export default function DeleteConfirmationModal({
     </div>
   );
 }
+
+export default DeleteConfirmationModal;
