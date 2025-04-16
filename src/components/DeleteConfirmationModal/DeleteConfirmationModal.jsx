@@ -14,12 +14,20 @@ export default function DeleteConfirmationModal({
         <button onClick={onClose} type="button" className="modal__close">
           ×
         </button>
-        <h3 className="modal__title">
-          Are you sure you want to delete this item?
-        </h3>
+        <div className="modal__title">
+          <h3>
+            Are you sure you want to delete this item?
+            <br />
+            This action is irreversible.
+          </h3>
+        </div>
+
         <div className="modal__actions">
-          <button className="modal__button" onClick={onConfirmDelete}>
-            Yes, delete
+          <button
+            className="modal__button modal__button_type_confirm"
+            onClick={onConfirmDelete}
+          >
+            Yes, delete item
           </button>
           <button
             className="modal__button modal__button_type_cancel"
