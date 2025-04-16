@@ -1,5 +1,4 @@
 import ClothesSection from "../ClothesSection/ClothesSection";
-import { defaultClothingItems } from "../../utils/constants";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
@@ -13,8 +12,7 @@ function Profile({ handleAddClick, onCardClick, clothingItems }) {
         <ClothesSection
           handleAddClick={handleAddClick}
           onCardClick={onCardClick}
-          defaultItems={defaultClothingItems}
-          newItems={clothingItems}
+          clothingItems={clothingItems}
         />
       </section>
     </div>
