@@ -12,7 +12,7 @@ import nightrain from "../../assets/nightrain.png";
 import nightsnow from "../../assets/nightsnow.png";
 import nightstorm from "../../assets/nightstorm.png";
 import { useContext } from "react";
-import CurrentTemperatureUnitContext from "../../CurrentTemperatureUnitContext/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 const weatherIcons = {
   dayclear,
