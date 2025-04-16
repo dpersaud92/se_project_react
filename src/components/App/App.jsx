@@ -6,7 +6,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
-import CurrentTemperatureUnitContext from "../../contexts/currentTemperatureUnit";
+import CurrentTemperatureUnitContext from "../../contexts/currentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 import { Routes, Route } from "react-router-dom";
