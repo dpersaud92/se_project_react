@@ -1,5 +1,6 @@
 import React from "react";
 import "./DeleteConfirmationModal.css";
+import close from "../../assets/close.svg";
 
 export default function DeleteConfirmationModal({
   isOpen,
@@ -12,7 +13,7 @@ export default function DeleteConfirmationModal({
     <div className="modal modal_opened">
       <div className="modal__content modal__content_type_confirm">
         <button onClick={onClose} type="button" className="modal__close">
-          ×
+          <img src={close} alt="close" />
         </button>
         <div className="modal__title">
           <h3>

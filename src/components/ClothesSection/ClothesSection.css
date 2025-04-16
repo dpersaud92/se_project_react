@@ -1,8 +1,25 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../../vendor/Fonts/CabinetGrotesk.ttf);
+}
+
 .clothes-section__add-item {
   display: flex;
   gap: 20px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 
 .clothes-section__button {
   border: none;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }

@@ -12,6 +12,7 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { defaultClothingItems } from "../../utils/constants";
+import { getItems } from "../../utils/API";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,10 +23,8 @@ function App() {
     isDay: false,
   });
 
-  const [clothingItems, setClothingItems] = useState(() => {
-    const saved = localStorage.getItem("clothingItems");
-    return saved ? JSON.parse(saved) : defaultClothingItems;
-  });
+  const [clothingItems, setClothingItems] = useState([]);
+
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [formValues, setFormValues] = useState({
@@ -75,6 +74,7 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+    setFormValues({ name: "", imageUrl: "", weather: "" });
   };
 
   function handleAddItemSubmit(newItem) {
@@ -83,7 +83,7 @@ function App() {
 
     const itemWithId = {
       ...newItem,
-      _id: Date.now().toString(),
+      _id: crypto.randomUUID(),
     };
 
     setClothingItems([itemWithId, ...clothingItems]);
@@ -96,6 +96,15 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        console.log(data);
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);

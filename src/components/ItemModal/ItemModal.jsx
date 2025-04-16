@@ -47,7 +47,7 @@ const ItemModal = forwardRef(
                 Delete item
               </button>
             </div>
-          </div> // 👈 This was missing
+          </div> //
         )}
       </div>
     );

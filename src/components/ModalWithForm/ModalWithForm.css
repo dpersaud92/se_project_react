@@ -22,13 +22,9 @@
 
 .modal__title {
   margin: 0;
-  font-family: Cabinet Grotesk;
+  font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 16px;
-}
-
-.modal__input {
-  border: none;
 }
 
 .modal__close {
@@ -61,14 +57,6 @@
   padding: 0;
 }
 
-.modal__footer {
-  padding-left: 32px;
-  padding-bottom: 32px;
-  background-color: #fff;
-  text-align: left;
-  gap: 12px;
-}
-
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -76,7 +64,7 @@
 
 .modal__label {
   margin-top: 24px;
-  font-family: Cabinet Grotesk;
+  font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 16px;
 }
@@ -85,6 +73,7 @@
   display: block;
   cursor: pointer;
   margin-top: 8px;
+  border: none;
   border-bottom: 2px solid rgba(0, 0, 0, 1);
   padding-bottom: 4px;
   width: 100%;
@@ -111,8 +100,8 @@
 }
 
 .modal__radio-input {
-  appearance: none;
   -webkit-appearance: none;
+  appearance: none;
   border: 2px solid rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   width: 20px;
@@ -164,7 +153,7 @@
   height: 36px;
   background-color: rgba(0, 0, 0, 1);
   border-radius: 4px;
-  font-family: Cabinet Grotesk;
+  font-family: " Cabinet Grotesk";
   font-size: 16px;
   margin-top: 32px;
   color: rgba(255, 255, 255, 1);
