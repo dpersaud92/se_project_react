@@ -11,8 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
-import { getItems } from "../../utils/API";
-import { defaultClothingItems } from "../../utils/constants";
+import { getItems, addItem, deleteItem } from "../../utils/API";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -37,23 +36,25 @@ function App() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [cardToDelete, setCardToDelete] = useState(null);
 
-  // useEffect(() => {
-  //   localStorage.setItem("clothingItems", JSON.stringify(clothingItems));
-  // }, [clothingItems]);
-
   const openConfirmationModal = (card) => {
     setCardToDelete(card);
     setIsConfirmModalOpen(true);
   };
 
   const handleConfirmDelete = () => {
-    setClothingItems((prevItems) =>
-      prevItems.filter((item) => item._id !== cardToDelete._id)
-    );
-    setIsConfirmModalOpen(false);
-    setActiveModal("");
-    setSelectedCard({});
-    setCardToDelete(null);
+    if (!cardToDelete?._id) return;
+
+    deleteItem(cardToDelete._id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== cardToDelete._id)
+        );
+        setIsConfirmModalOpen(false);
+        setActiveModal("");
+        setSelectedCard({});
+        setCardToDelete(null);
+      })
+      .catch(console.error);
   };
 
   const handleToggleSwitchChange = () => {
@@ -78,17 +79,13 @@ function App() {
   };
 
   function handleAddItemSubmit(newItem) {
-    console.log("New item weather:", newItem.weather);
-    console.log("Current weather type:", weatherData.type);
-
-    const itemWithId = {
-      ...newItem,
-      _id: crypto.randomUUID(),
-    };
-
-    setClothingItems([itemWithId, ...clothingItems]);
-    setActiveModal("");
-    setFormValues({ name: "", imageUrl: "", weather: "" }); // Reset form
+    addItem(newItem)
+      .then((addedItem) => {
+        setClothingItems((prev) => [addedItem, ...prev]);
+        setActiveModal("");
+        setFormValues({ name: "", imageUrl: "", weather: "" });
+      })
+      .catch(console.error);
   }
 
   useEffect(() => {
@@ -102,13 +99,10 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((serverItems) => {
-        setClothingItems([...defaultClothingItems, ...serverItems]);
+      .then((items) => {
+        setClothingItems(items);
       })
-      .catch((err) => {
-        console.error("Failed to fetch items from server:", err);
-        setClothingItems(defaultClothingItems);
-      });
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
