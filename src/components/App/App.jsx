@@ -12,6 +12,7 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { getItems } from "../../utils/API";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -36,9 +37,9 @@ function App() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [cardToDelete, setCardToDelete] = useState(null);
 
-  useEffect(() => {
-    localStorage.setItem("clothingItems", JSON.stringify(clothingItems));
-  }, [clothingItems]);
+  // useEffect(() => {
+  //   localStorage.setItem("clothingItems", JSON.stringify(clothingItems));
+  // }, [clothingItems]);
 
   const openConfirmationModal = (card) => {
     setCardToDelete(card);
@@ -101,11 +102,13 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((data) => {
-        console.log(data);
-        setClothingItems(data);
+      .then((serverItems) => {
+        setClothingItems([...defaultClothingItems, ...serverItems]);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to fetch items from server:", err);
+        setClothingItems(defaultClothingItems);
+      });
   }, []);
 
   useEffect(() => {
