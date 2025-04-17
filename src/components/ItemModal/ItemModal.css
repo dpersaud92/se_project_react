@@ -18,6 +18,20 @@
   gap: 12px;
 }
 
+.modal__close-preview {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.modal__close-button_dark {
+  color: black;
+}
+
 .modal__info {
   display: flex;
   flex-direction: column;
@@ -49,4 +63,21 @@
   padding: 0;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.modal__image {
+  width: 100%;
+  height: auto;
+  max-height: 498px;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.modal__content_type_image {
+  width: 498px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: white;
 }

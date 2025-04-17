@@ -1,6 +1,7 @@
 import "./ItemModal.css";
 import close from "../../assets/close.svg";
 import React, { forwardRef, useRef } from "react";
+import closewhite from "../../assets/closewhite.svg";
 
 const ItemModal = forwardRef(
   ({ activeModal, onClose, card, handleDelete }, ref) => {
@@ -15,23 +16,30 @@ const ItemModal = forwardRef(
       }
     };
 
+    const isLightImage = card.name === "Cap";
+
     return (
       <div
         ref={ref}
-        className={`modal ${activeModal === "preview" && "modal_opened"}`}
+        className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}
         onMouseDown={handleOverlayClick}
       >
         {activeModal === "preview" && (
           <div
             ref={modalContentRef}
-            className="modal__content modal__content_type_image"
+            className={`modal__content modal__content_type_image`}
           >
-            <button onClick={onClose} type="button" className="modal__close">
-              <img src={close} alt="close" />
+            <button
+              onClick={onClose}
+              type="button"
+              className="modal__close-preview"
+            >
+              <img src={isLightImage ? close : closewhite} alt="close" />
             </button>
+
             <img
               src={card.imageUrl || card.link}
-              alt={card.name || ""}
+              alt={card.name}
               className="modal__image"
             />
             <div className="modal__footer">
@@ -47,7 +55,7 @@ const ItemModal = forwardRef(
                 Delete item
               </button>
             </div>
-          </div> //
+          </div>
         )}
       </div>
     );

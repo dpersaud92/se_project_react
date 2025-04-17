@@ -42,15 +42,17 @@ function App() {
   };
 
   const handleConfirmDelete = () => {
-    if (!cardToDelete?._id) return;
+    const id = cardToDelete?._id ?? cardToDelete?.id;
+    if (id === undefined || id === null) return;
 
-    deleteItem(cardToDelete._id)
+    deleteItem(id)
       .then(() => {
         setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== cardToDelete._id)
+          prevItems.filter((item) => (item._id ?? item.id) !== id)
         );
-        setIsConfirmModalOpen(false);
+
         setActiveModal("");
+        setIsConfirmModalOpen(false);
         setSelectedCard({});
         setCardToDelete(null);
       })
@@ -100,7 +102,15 @@ function App() {
   useEffect(() => {
     getItems()
       .then((items) => {
-        setClothingItems(items);
+        if (items.length === 0) {
+          Promise.all(defaultClothingItems.map((item) => addItem(item)))
+            .then((seededItems) => {
+              setClothingItems(seededItems);
+            })
+            .catch(console.error);
+        } else {
+          setClothingItems(items);
+        }
       })
       .catch(console.error);
   }, []);

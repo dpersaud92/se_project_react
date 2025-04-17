@@ -28,4 +28,5 @@
 .card__image {
   width: 100%;
   cursor: pointer;
+  max-height: 326px;
 }
