@@ -84,6 +84,7 @@ function App() {
       .then((addedItem) => {
         setClothingItems((prev) => [addedItem, ...prev]);
         closeActiveModal();
+
         setFormValues({ name: "", imageUrl: "", weather: "" });
       })
       .catch(console.error);
