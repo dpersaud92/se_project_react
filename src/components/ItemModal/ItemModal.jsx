@@ -7,6 +7,8 @@ const ItemModal = forwardRef(
   ({ activeModal, onClose, card, handleDelete }, ref) => {
     const modalContentRef = useRef(null);
 
+    const isLightImage = card.isLight;
+
     const handleOverlayClick = (e) => {
       if (
         modalContentRef.current &&
@@ -15,8 +17,6 @@ const ItemModal = forwardRef(
         onClose();
       }
     };
-
-    const isLightImage = card.name === "Cap";
 
     return (
       <div
@@ -34,7 +34,11 @@ const ItemModal = forwardRef(
               type="button"
               className="modal__close-preview"
             >
-              <img src={isLightImage ? close : closewhite} alt="close" />
+              <img
+                src={isLightImage ? close : closewhite}
+                alt="close"
+                className="modal__close-icon"
+              />
             </button>
 
             <img
