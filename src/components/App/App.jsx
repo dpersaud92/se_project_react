@@ -51,7 +51,7 @@ function App() {
           prevItems.filter((item) => (item._id ?? item.id) !== id)
         );
 
-        setActiveModal("");
+        closeActiveModal();
         setIsConfirmModalOpen(false);
         setSelectedCard({});
         setCardToDelete(null);
@@ -77,14 +77,13 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
-    setFormValues({ name: "", imageUrl: "", weather: "" });
   };
 
   function handleAddItemSubmit(newItem) {
     addItem(newItem)
       .then((addedItem) => {
         setClothingItems((prev) => [addedItem, ...prev]);
-        setActiveModal("");
+        closeActiveModal();
         setFormValues({ name: "", imageUrl: "", weather: "" });
       })
       .catch(console.error);
