@@ -29,4 +29,5 @@
   width: 100%;
   cursor: pointer;
   max-height: 326px;
+  object-fit: cover;
 }
