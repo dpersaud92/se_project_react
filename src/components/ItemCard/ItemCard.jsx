@@ -1,20 +1,43 @@
-import "./ItemCard.css";
+import React, { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import "./itemCard.css";
+import LikeButton from "../../assets/Like.svg";
+import FilledHeartIcon from "../../assets/FilledLike.svg";
 
-function ItemCard({ item, onCardClick }) {
-  const handleCardClick = () => {
-    onCardClick(item);
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isLiked = item.likes.includes(currentUser._id);
+
+  const itemLikeButtonClassName = `card__like-button ${
+    isLiked ? "card__like-button_active" : ""
+  }`;
+
+  const handleLike = () => {
+    onCardLike({ id: item._id, isLiked });
   };
 
   return (
-    <li className="card">
-      <h2 className="card__name">{item.name}</h2>
+    <div className="card">
+      <div className="card__header">
+        <p className="card__name">{item.name}</p>
+        <button className={itemLikeButtonClassName} onClick={handleLike}>
+          <div className="card__like">
+            <img
+              src={isLiked ? FilledHeartIcon : LikeButton}
+              alt="like"
+              className="card__like-icon"
+            />
+          </div>
+        </button>
+      </div>
+
       <img
-        onClick={handleCardClick}
-        className="card__image"
-        src={item.imageUrl || item.link}
+        src={item.imageUrl}
         alt={item.name}
+        className="card__image"
+        onClick={() => onCardClick(item)}
       />
-    </li>
+    </div>
   );
 }
 

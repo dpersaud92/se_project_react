@@ -1,0 +1,54 @@
+.modal__switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.modal__submit,
+.modal__switch-button {
+  border: none;
+  padding: 8px 20px;
+  min-width: 100px;
+  height: 36px;
+  background-color: black;
+  color: white;
+  font-family: "Cabinet Grotesk";
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.modal__submit {
+  margin-bottom: 30px;
+}
+
+.modal__submit:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+  margin-bottom: 30px;
+}
+
+.modal__switch-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal__switch-wrapper {
+  margin-top: 0;
+}
+
+.modal__or {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0 4px;
+  white-space: nowrap;
+}
+
+.modal__ .modal__error {
+  color: red;
+  font-size: 12px;
+  margin-top: -12px;
+}

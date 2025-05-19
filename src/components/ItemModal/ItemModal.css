@@ -3,81 +3,90 @@
   src: url(../../vendor/Fonts/CabinetGrotesk.ttf);
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.modal__content_type_image {
+  width: 498px;
+  background-color: white;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal__image {
+  width: 100%;
+  height: 498px;
+  display: block;
+  object-fit: fill;
+}
+
 .modal__footer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: white;
+  align-items: flex-start;
   padding: 16px 20px;
   font-family: "Cabinet Grotesk";
+  background-color: white;
   border-top: 1px solid #eee;
-  padding-left: 32px;
-  padding-bottom: 32px;
-  background-color: #fff;
-  text-align: left;
-  gap: 12px;
-}
-
-.modal__close-preview {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-}
-
-.modal__close-button_dark {
-  color: black;
-}
-
-.modal__info {
-  display: flex;
-  flex-direction: column;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .modal__caption {
-  margin: 0 0 12px;
-  font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 20px;
+  line-height: 24px;
+  margin: 0;
 }
 
 .modal__weather {
-  margin: 0;
-  font-family: Cabinet Grotesk;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 8px 0 0;
 }
 
 .modal__delete {
   background: none;
   border: none;
-  color: rgba(255, 77, 0, 1);
-  margin-bottom: auto;
-  font-size: 20px;
+  color: #ff4d00;
   font-weight: 700;
-  line-height: 24px;
+  font-size: 16px;
   cursor: pointer;
   padding: 0;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
-.modal__image {
-  width: 100%;
-  height: auto;
-  max-height: 498px;
-  object-fit: cover;
+.modal__close-preview {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal__close-button_dark::before {
+  font-size: 20px;
   display: block;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  line-height: 20px;
+  text-align: center;
 }
 
-.modal__content_type_image {
-  width: 498px;
-  border-radius: 20px;
-  overflow: hidden;
-  background-color: white;
+.modal__close-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5));
 }

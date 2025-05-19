@@ -1,0 +1,7 @@
+.modal__submit {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 10px 16px;
+  min-width: 120px;
+}

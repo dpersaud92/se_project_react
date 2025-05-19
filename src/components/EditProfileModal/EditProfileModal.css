@@ -1,0 +1,36 @@
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.modal__input {
+  margin-top: 8px;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid black;
+  background-color: transparent;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.modal__input:focus {
+  border-bottom-color: #000;
+}
+
+.modal__submit {
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal__submit:hover {
+  background-color: #333;
+}

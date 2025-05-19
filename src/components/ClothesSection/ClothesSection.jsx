@@ -1,30 +1,35 @@
 import "./ClothesSection.css";
+import React, { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ClothesSection({ handleAddClick, onCardClick, clothingItems }) {
+function ClothesSection({
+  clothingItems,
+  onCardClick,
+  onCardLike,
+  isLoggedIn,
+}) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const userItems = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
+
   return (
-    <div className="clothes-section">
-      <div className="clothes-section__add-item">
-        <p>Your Items</p>
-        <button
-          className="clothes-section__button"
-          onClick={handleAddClick}
-          type="button"
-        >
-          + Add New
-        </button>
-      </div>
-
-      <ul className="cards__list">
-        {clothingItems.map((item) => (
+    <section className="clothes-section">
+      <div className="clothes-section__items">
+        {userItems.map((item) => (
           <ItemCard
-            key={item._id || `${item.name}-${Math.random()}`}
+            key={item._id}
             item={item}
             onCardClick={onCardClick}
+            onCardLike={onCardLike}
+            isLoggedIn={isLoggedIn}
+            isDarkBackground={true}
           />
         ))}
-      </ul>
-    </div>
+      </div>
+    </section>
   );
 }
 

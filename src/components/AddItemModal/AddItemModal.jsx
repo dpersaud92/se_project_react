@@ -17,6 +17,7 @@ function AddItemModal({
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log("Form submitted:", formValues); // Debug log
     onAddItem({
       name: formValues.name,
       imageUrl: formValues.imageUrl,
@@ -31,7 +32,6 @@ function AddItemModal({
       buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
-      isSubmitDisabled={!isFormValid}
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
@@ -48,6 +48,7 @@ function AddItemModal({
           value={formValues.name}
         />
       </label>
+
       <label htmlFor="imageUrl" className="modal__label">
         Image
         <input
@@ -60,6 +61,7 @@ function AddItemModal({
           value={formValues.imageUrl}
         />
       </label>
+
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
         {["hot", "warm", "cold"].map((type) => (

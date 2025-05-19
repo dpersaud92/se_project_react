@@ -1,5 +1,45 @@
 .profile {
   display: flex;
-  gap: 116px;
-  white-space: nowrap;
+  gap: 56px;
+  padding: 40px;
+  font-family: "Cabinet Grotesk";
+}
+
+.profile__sidebar {
+  flex-shrink: 0;
+}
+
+.profile__main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__clothes-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile__clothes-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.profile__add-new-button {
+  font-size: 16px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+  padding: 0;
+}
+
+.profile__clothing-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }

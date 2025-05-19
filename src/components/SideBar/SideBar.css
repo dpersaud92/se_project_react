@@ -1,17 +1,35 @@
-@font-face {
-  font-family: "Cabinet Grotesk";
-  src: url(../../vendor/Fonts/CabinetGrotesk.ttf);
-}
-
 .sidebar {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
+  font-family: "Cabinet Grotesk";
+}
+
+.sidebar__user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
 }
 
 .sidebar__username {
-  font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 20px;
-  line-height: 100%;
-  letter-spacing: 0%;
+  margin: 0;
+}
+
+.sidebar__button {
+  display: flex;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
 }

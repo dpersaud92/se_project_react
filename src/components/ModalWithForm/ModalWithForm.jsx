@@ -6,15 +6,7 @@ import useModalClose from "../../Hooks/useModalClose";
 const ModalWithForm = forwardRef((props, ref) => {
   useModalClose(props.isOpen, props.onClose);
 
-  const {
-    children,
-    buttonText,
-    title,
-    isOpen,
-    onClose,
-    onSubmit,
-    isSubmitDisabled,
-  } = props;
+  const { children, title, isOpen, onClose, onSubmit, buttonText } = props;
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
@@ -25,13 +17,11 @@ const ModalWithForm = forwardRef((props, ref) => {
         </button>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button
-            type="submit"
-            className="modal__submit"
-            disabled={isSubmitDisabled}
-          >
-            {buttonText}
-          </button>
+          {buttonText && (
+            <button type="submit" className="modal__submit">
+              {buttonText}
+            </button>
+          )}
         </form>
       </div>
     </div>

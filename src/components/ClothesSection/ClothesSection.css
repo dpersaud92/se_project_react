@@ -6,20 +6,26 @@
 .clothes-section__add-item {
   display: flex;
   gap: 20px;
-  font-family: Cabinet Grotesk;
+  font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
-  letter-spacing: 0%;
 }
 
 .clothes-section__button {
   border: none;
-  font-family: Cabinet Grotesk;
+  background: none;
+  font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 20px;
-  line-height: 100%;
-  letter-spacing: 0%;
   color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
+  padding: 0;
+}
+
+.clothes-section__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding-top: 20px;
 }
