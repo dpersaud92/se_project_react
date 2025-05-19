@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import "./itemCard.css";
+import "./ItemCard.css";
 import LikeButton from "../../assets/Like.svg";
 import FilledHeartIcon from "../../assets/FilledLike.svg";
 
