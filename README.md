@@ -8,29 +8,53 @@ _A wardrobe planner based on the weather_
 
 ## 🧩 Project Description
 
-**What to Wear** is a React-based application that helps users plan their outfits according to the current weather conditions. It displays clothing suggestions based on temperature and weather type, and allows users to add or delete items from their personal wardrobe.
+**What to Wear** is a full-stack application that helps users plan their outfits according to current weather conditions. It displays clothing suggestions based on temperature and allows users to add, view, like, and delete items in their personal wardrobe.
 
 ---
 
-## Tech Stack
+## 🔧 Tech Stack
 
-- **React** (with Hooks and Context API)
-- **React Router v6**
-- **Vite** (fast dev server and build tool)
-- **CSS** for styling
-- **JSON Server** for mock backend (`db.json`)
-- **localStorage** for item persistence
+- **Frontend**:
 
-## Features
+  - React (with Hooks and Context API)
+  - React Router v6
+  - Vite (for fast builds)
+  - CSS
 
-- Live weather-based clothing suggestions
+- **Backend**:
 
-- Toggle between Fahrenheit and Celsius
+  - Node.js + Express
+  - MongoDB (with Mongoose)
+  - JWT Authentication
+  - RESTful API
 
-- Add new clothing items via modal form
+- **Other**:
+  - localStorage (for token and state persistence)
+  - OpenWeather API (for live temperature data)
 
-- Delete confirmation before item removal
+---
 
-- Profile route with full wardrobe
+## ✨ Features
 
-- Persistent items using localStorage
+- ✅ Live weather-based clothing suggestions
+- ✅ Toggle between Fahrenheit and Celsius
+- ✅ Add new clothing items via modal form
+- ✅ Like and delete items (owner-only delete)
+- ✅ Protected routes for logged-in users
+- ✅ Edit user profile with modal
+- ✅ Persistent login with JWT
+
+---
+
+## 🗂️ Project Structure
+
+- Modular React components
+- Centralized API logic in `utils/`
+- Contexts for user and temperature
+- Separate modals for login/register/profile
+
+---
+
+## 🔗 Backend Repository
+
+[Click here to view the backend code](https://github.com/dpersaud92/se_project_express)
