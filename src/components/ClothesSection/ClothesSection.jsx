@@ -25,7 +25,7 @@ function ClothesSection({
             onCardClick={onCardClick}
             onCardLike={onCardLike}
             isLoggedIn={isLoggedIn}
-            isDarkBackground={true}
+            // isDarkBackground={true}
           />
         ))}
       </div>

@@ -20,15 +20,17 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
     <div className="card">
       <div className="card__header">
         <p className="card__name">{item.name}</p>
-        <button className={itemLikeButtonClassName} onClick={handleLike}>
-          <div className="card__like">
-            <img
-              src={isLiked ? FilledHeartIcon : LikeButton}
-              alt="like"
-              className="card__like-icon"
-            />
-          </div>
-        </button>
+        {isLoggedIn && (
+          <button className={itemLikeButtonClassName} onClick={handleLike}>
+            <div className="card__like">
+              <img
+                src={isLiked ? FilledHeartIcon : LikeButton}
+                alt="like"
+                className="card__like-icon"
+              />
+            </div>
+          </button>
+        )}
       </div>
 
       <img

@@ -330,20 +330,27 @@ function App() {
                   path="/profile"
                   element={
                     <ProtectedRoute
-                      element={Profile}
                       isLoggedIn={isLoggedIn}
-                      clothingItems={clothingItems}
-                      onCardClick={handleCardClick}
-                      onCardLike={handleCardLike}
-                      onEditProfileClick={() => setIsEditProfileModalOpen(true)}
-                      handleAddClick={handleAddClick}
-                      onSignOut={() => {
-                        localStorage.removeItem("jwt");
-                        setIsLoggedIn(false);
-                        setCurrentUser({});
-                        setActiveModal("");
-                        navigate("/");
-                      }}
+                      element={(props) => (
+                        <Profile
+                          {...props}
+                          isLoggedIn={isLoggedIn}
+                          clothingItems={clothingItems}
+                          onCardClick={handleCardClick}
+                          onCardLike={handleCardLike}
+                          onEditProfileClick={() =>
+                            setIsEditProfileModalOpen(true)
+                          }
+                          handleAddClick={handleAddClick}
+                          onSignOut={() => {
+                            localStorage.removeItem("jwt");
+                            setIsLoggedIn(false);
+                            setCurrentUser({});
+                            setActiveModal("");
+                            navigate("/");
+                          }}
+                        />
+                      )}
                     />
                   }
                 />

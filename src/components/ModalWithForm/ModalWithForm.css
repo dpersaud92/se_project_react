@@ -34,6 +34,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .modal__content {

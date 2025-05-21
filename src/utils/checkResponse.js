@@ -1,8 +1,14 @@
-const checkResponse = (res) => {
+const checkResponse = (res, customErrorMessage) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Error: ${res.status}`);
+
+  const baseMessage = `Error: ${res.status}`;
+  const fullMessage = customErrorMessage
+    ? `${customErrorMessage} (${baseMessage})`
+    : baseMessage;
+
+  return Promise.reject(fullMessage);
 };
 
 export default checkResponse;

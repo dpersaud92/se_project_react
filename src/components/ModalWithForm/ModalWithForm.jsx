@@ -1,11 +1,8 @@
 import "./ModalWithForm.css";
 import close from "../../assets/close.svg";
 import React, { forwardRef } from "react";
-import useModalClose from "../../Hooks/useModalClose";
 
 const ModalWithForm = forwardRef((props, ref) => {
-  useModalClose(props.isOpen, props.onClose);
-
   const { children, title, isOpen, onClose, onSubmit, buttonText } = props;
 
   return (
